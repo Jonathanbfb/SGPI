@@ -1,0 +1,18 @@
+[
+    {
+        "nome": "Kaique", 
+        "senha": "123",
+        "office": "Presidente"
+    },
+    {
+        "nome": "Francisco", 
+        "senha": "123",
+        "office": "Tecnico"
+    },
+    {
+        "nome": "Joao", 
+        "senha": "123",
+        "office": "Advogado"
+    }
+]
+  

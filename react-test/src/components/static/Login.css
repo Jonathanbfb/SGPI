@@ -1,0 +1,187 @@
+.containerLogin{
+    position: relative;
+    margin-top: 0;
+    width: 400px;
+    height: 550px;
+    border: 3px solid gray;
+    margin-left: 30%;
+    background-color: white;
+    border-radius: 20px;
+    padding-left: 10px;
+    display: inline-block;
+}
+.login-form-wrap {
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 0;
+}
+.login-main{
+    background-image: url(./imagens/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    padding-top: 50px;
+    width: 100%;
+    height: 100%;
+}
+.login-user-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 150px;
+}
+.login-user-text{
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+}
+.login-user-input{
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 370px;
+    height: 30px;
+    border: 1px solid  #e4e2e2;
+    border-radius: 10px;
+    background-color: #e4e2e2;
+    
+}
+.show-pass{
+    position: absolute;
+    left: 860px;
+    bottom: 230px;
+    width: 20px;
+}
+#login-senha{
+    display: inline-block;
+}
+.forgot{
+    padding-right: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #e4e2e200;
+    border: none;
+}
+.submit{
+    border: 0px solid rgb(8, 147, 12);
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    background-color: rgb(42, 123, 45);
+    margin-left: 100px;
+    cursor: pointer;
+    color: white;
+    display: inline-block;
+    vertical-align: top;
+}
+div#alerta{
+    background: rgba(255, 255, 0, 0);
+    color: rgb(194, 0, 0);
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+
+}
+.main-logo{
+    margin-left: 15%;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    line-height: 570px;    
+    height: 570px;
+}
+.main-logo-img{
+    width: 200px;
+    position: relative;
+    vertical-align: middle;
+}
+.popup .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1;
+    display: block;
+}
+.popup .content{
+    position: absolute;
+    top: 49%;
+    left: 73%;
+    transform: translate(-50%, -50%) scale(1);
+    background: #fff;
+    width: 430px;
+    height: 560px;
+    z-index: 2;
+    border: 3px solid gray;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+.popup .close-btn{
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Open Sans, Semibold';
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.email-background{
+    margin-top: 50px;
+    margin-left: 10px;
+    width: 400px;
+    height: 90px;
+    background-image: url('../../img/backgroundPopup.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+}
+
+.email-background a{
+    display: inline-block;
+    padding-left: 25%;
+    padding-top: 5%;
+}
+
+.reenviar{
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 150px;
+    height: 30px;
+    background-color: white;
+    float: right;
+    cursor: pointer;
+}
+.codigo-email{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    width: 370px;
+    height: 30px;
+    border: 1px solid  #e4e2e2;
+    border-radius: 10px;
+    background-color: #e4e2e2;
+}
+.cod-email-text{
+    margin-top: 40px;
+    margin-left: 20px;
+}
+.confirmar{
+    color: white;
+    margin-top: 30px;
+    border: 0 solid black;
+    border-radius: 20px;
+    width: 150px;
+    height: 30px;
+    background-color: rgb(42, 123, 45);
+    float: right;
+    cursor: pointer;
+}

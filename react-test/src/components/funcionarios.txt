@@ -1,0 +1,90 @@
+import React, { useState, useEffect } from 'react';
+import '../App.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+import headerLogo from '../img/headerLogo.png';
+import user from '../img/user.png';
+import funcionariosImg from '../img/funcionarios.png';
+import trash from '../img/trash.png';
+import editar from '../img/edit.png';
+
+import { BarraLateral } from './BarraLateral';
+
+function Funcionarios() {
+    const navigate = useNavigate();
+    const [funcionarios, setFuncionarios] = useState([]);
+
+    const homePath = () => {
+        navigate('/Home');
+    };
+
+    const fetchData = async () => {
+        try {
+            const employeeId = localStorage.getItem("employeeId");
+            const companyId = localStorage.getItem("companyId");
+            let response;
+            let data;
+            response = await axios.post('http://localhost:3010/searchEmployees', JSON.stringify({ companyId }), { headers: { 'Content-Type': 'application/json' } });
+            console.log('Resposta:', response);
+            data = response.data;
+            console.log('Dados recebidos:', data);
+            setFuncionarios(data);
+            
+        } catch (error) {
+            console.error('Erro ao buscar funcionários:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []); // Assegura que a função seja chamada apenas na montagem inicial
+
+    return (
+        <div>
+            <header>
+                <div className="user-log">
+                    <img src={headerLogo} alt='' className="header-logo" href="#" onClick={homePath}></img>
+                </div>
+                <div>
+                    <input type="text" id='busca' className="home-search"></input>
+                </div>
+            </header>
+
+            <BarraLateral
+                office='Tecnico'
+                nome='Francisco'
+            />
+
+            <main className="main-table">
+                <div>
+                    <img src={funcionariosImg} alt='' className="page-sub-icon"></img>Funcionários
+                </div>
+                <div className="container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Nome</th>
+                                <th>Cargo</th>
+                                <th>E-mail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {funcionarios.map(funcionario =>
+                                <tr key={funcionario._id}>
+                                    <td>{funcionario.usuario}</td>
+                                    <td><img src={user} alt='' className="table-users"></img> {funcionario.nome}</td>
+                                    <td><span className="linhaTipo">{funcionario.cargo}</span></td>
+                                    <td>{funcionario.email} <img src={trash} alt='' className="table-icons"></img> <img src={editar} alt='' className="table-icons"></img></td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    );
+}
+
+export default Funcionarios;

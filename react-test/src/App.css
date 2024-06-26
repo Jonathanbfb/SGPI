@@ -1,0 +1,538 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.nome-patente {
+  color: black;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+header{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 2;
+}
+.header-logo{
+  height: 40px;
+  z-index: 1;
+  cursor: pointer;
+}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0px;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+b{
+
+  margin-top: 15px;
+  content: '';
+  height: 2px;
+  background-color: rgb(101, 99, 99);
+  display: block;
+}
+t{
+  padding-left: 10px;
+  font-family: 'Open Sans, Regular';
+  font-size: 15px;
+  color: white;
+}
+.btn-abrir{
+  color: black;
+  font-size: 25px;
+}
+nav{
+  height: 100%;
+  width: 250px;
+  background-color: #131313;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+nav a{
+  color: black;
+  font-size: 15px;
+  display: block;
+  padding-left: 15px;
+  padding-top: 20px;
+  height: 40px;
+}
+.seta-retorno{
+  width:30px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.user{
+  width:50px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.user-log{
+  margin-top: 2%;
+  margin-left: 20rem;
+  display: inline-block;
+  z-index: 2;
+  cursor: pointer;
+}
+.detalhes-text{
+  display: inline-block;
+  z-index: 2;
+  cursor: pointer;
+  height: 3rem;
+  padding-right: 5%;
+}
+.lateral-user{
+  display: inline-block;
+  z-index: 2;
+  cursor: pointer;
+}
+.name{
+  display: block;
+  color: white;
+}
+nav a:hover{
+  color: rgb(0, 0, 0);
+  background-color: rgb(27, 114, 181);
+}
+header div{
+  display: inline-block;
+}
+
+.ativo{
+  width: 300px;
+  height: 40px;
+  border: 1px solid #e4e2e2;
+  margin-left: 600px;
+  border-radius: 10px;
+  background-color: #e4e2e2;
+}
+
+.home-search{
+  background-image: url('./img/lupa.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  width: 150%;
+  height: 2rem;
+  border: 1px solid #e4e2e2;
+  margin-left: 380%;
+  border-radius: 10px;
+  background-color: #d6d6d6;
+}
+
+.existentes-search{
+  background-image: url('./img/lupa.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  margin-top: 5%;
+  width: 40%;;
+  height: 40px;
+  border: 1px solid #e4e2e2;
+  border-radius: 10px;
+  background-color: #e4e2e2;
+}
+main{
+  position: absolute;
+  padding-top: 100px;
+  padding-left: 300px;
+}
+.bloco{
+  margin-top: 50px;
+  margin-right: 10px;
+  width: 300px;
+  height: 200px;
+  border:1px solid #e4e2e2 ;
+  display: inline-block;
+  border-radius: 5px;
+  color: #191919;
+  position: relative;
+
+  box-shadow: 0px 3px 6px #00000029;
+
+  vertical-align: bottom;
+  background-color: #F2F3F5 ;
+}
+.icon{
+  width: 50px;
+  display: block;
+  margin-left: 30px;
+  margin-top: 50px;
+}
+.side-icon{
+  width: 20px;
+}
+.pdf-icon{
+  width: 8%;
+  padding-top: 5%;
+}
+h2{
+  margin-left: 33px;
+  margin-top: auto;
+  font-family: 'Open Sans, Semibold';
+}
+.container{
+  margin-top: 50px;
+  margin-right: 10px;
+  width: 1100px;
+  height: 100%;
+  border:1px solid #e4e2e2 ;
+  border-radius: 5px;
+  color: black;
+  position: relative;
+  vertical-align: bottom;
+  background-color: #e4e2e2;
+}
+.page-sub-icon{
+  width: 30px;
+}
+table {
+  border-collapse: collapse;
+  width: 95%;
+  margin: 20px;
+  border-radius: 50px;
+  font-size: 10px;
+}
+table .table-icons{
+  padding-left: 20px;
+  float: right;
+}
+table .titulos-existentes{
+  background-color: #f2f3f5;
+}
+table .table-users{
+  padding-right:  20px;
+  width: 15px;
+  float: left;
+}
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  max-width: 200px;
+}
+th {
+  background-color: #131313;
+  color: white;
+}
+tr:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+.linhaTipo{
+  padding: 5px;
+  background-color: #01ADB9;
+  border-radius: 30px;
+  color: white;
+}
+.linhaStatus{
+  padding: 5px;
+  background-color: #F9C34C;
+  border-radius: 10px;
+  color: white;
+}
+.linhaStatusE{
+  padding: 5px;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+}
+.detalhes-container{
+  margin-top: 10%;
+  margin-right: 10%;
+  width: 400%;
+  height: 15rem;
+  padding: 5%;
+  border:1px solid #e4e2e2 ;
+  border-radius: 5px;
+  color: black;
+  position: relative;
+  vertical-align: bottom;
+  background-color: #e4e2e2;
+}
+.main-container-add{
+  padding: 0%;
+  margin-left: 20%;
+  margin-top: 7%;
+  width: 83%;
+  height: 100%;
+  
+}
+.main-container{
+  padding: 0%;
+  margin-left: 20%;
+  margin-top: 7%;
+}
+.add-text{
+  display: inline;
+  float: left;
+  padding-left: 0%;
+  vertical-align: top;
+}
+.add-text-registro{
+  display: inline;
+  float: left;
+  padding-left: 0%;
+  vertical-align: top;
+  margin-bottom: 3%;
+}
+.side-icon-top{
+  width: 20px;
+  float: left;
+}
+.container-add{
+  display: inline-block;
+  width: 90%;
+  
+}
+.container-add-registro{
+  display: inline;
+  width: 80%;  
+}
+.login-user-text{
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  padding-left: 5%;
+  display: block;
+}
+.login-user-input{
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 30px;
+  border: 1px solid  #e4e2e2;
+  border-radius: 10px;
+  background-color: white;
+}
+.add-user-input{
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 30px;
+  border: 1px solid  #e4e2e2;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+}
+.registro-input-titulo{
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 30px;
+  border: 1px solid  #e4e2e2;
+  border-radius: 10px;
+  background-color: white;
+  display: inline-block;
+}
+.registro-resumo-input{
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 20rem;
+  border: 1px solid  #e4e2e2;
+  border-radius: 10px;
+  background-color: white;
+  display: inline-block;
+}
+.registro-text-input{
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  height: 30px;
+  border: 1px solid  #e4e2e2;
+  border-radius: 10px;
+  background-color: white;
+  display: inline-block;
+}
+.drop-area{
+  position: relative;
+  top: 20%;
+  left: 20%;
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  border: 2px dashed #777;
+  border-radius: 20px;
+  text-align: center;
+}
+.drop-area-hover{
+  border-color: #000;
+  color: #000;
+}
+.divisa-geral{
+  border: 1px solid black;
+  height: auto;
+  border-radius: 10px;
+  background-color: #F2F3F5;
+  
+}
+.divisa-registro-geral{
+  border: 1px solid black;
+  height: auto;
+  width: 90%;
+  border-radius: 10px;
+  background-color: #F2F3F5;
+  display: inline-block;
+  padding-left: 3%;
+  padding-top: 3%;
+}
+.submit{
+  margin-left: 0%;
+  border: 0px solid rgb(8, 147, 12);
+  background-color: rgb(42, 123, 45);
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+}
+#btn_entrar{
+  border: 0px solid rgb(8, 147, 12);
+  background-color: rgb(42, 123, 45);
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  width: 80px;
+  height: 30px;
+  position: relative;
+  display: inline-block;
+}
+#btn_editar{
+  margin-left: 0%;
+  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  cursor: pointer;
+  color: black;
+  width: fit-content;
+  height: 30px;
+  position: relative;
+  vertical-align: bottom;
+  float: right;
+}
+#btn_nova_acao{
+  margin-left: 0%;
+  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  cursor: pointer;
+  color: black;
+  width: 100px;
+  height: 30px;
+  position: relative;
+  vertical-align: bottom;
+  float: left;
+}
+#btn_finalizar{
+  margin-left: 0%;
+  border: 1px solid black;
+  background-color: rgb(255, 0, 0);
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  width: 100px;
+  height: 30px;
+  position: relative;
+  vertical-align: bottom;
+  float: right;
+}
+#btn_edit_nv{
+  margin-top: 10%;
+  vertical-align: bottom;  
+  width: 400%;
+}
+#login-senha{
+  margin-top: 1%;
+  margin-right: 10%;
+  margin-bottom: 2%;
+  position: relative;
+  float: right;
+  vertical-align: bottom;
+}
+.image-holder{
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.input-holder-um{
+  padding-top: 1.6%;
+  padding-left: 5%;
+  width: 30%;
+  height: fit-content;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+.input-holder-dois{
+  padding-left: 5%;
+  width:  30%;
+  height: fit-content;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+.registro-holder{
+  padding-left: 5%;
+  width:  100%;
+  height: fit-content;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+.registro-select{
+  display: inline-block;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

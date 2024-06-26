@@ -1,0 +1,177 @@
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const routes = express.Router();
+
+// -------------------- Modelos para o BD --------------------
+
+const Employee = mongoose.model('employee', {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    office: { type: String, required: true },
+    company: { type: String, required: true },
+})
+
+const Company = mongoose.model('company', {
+    name: String,
+    email: String
+})
+
+// -------------------- ROTAS PARA AS EMPRESAS --------------------
+
+// Rota para Criação de Empresas
+routes.post("/createCompany", async (req, res) => {
+
+    try{
+        const userEmail = await Company.findOne({email: req.body.email})
+
+        if (!(userEmail)) {
+            const { name, email } = req.body;
+
+            const company = new Company({
+                name: name,
+                email: email
+            })
+            await company.save()
+            return res.send(company)
+        }
+
+        return res.send('Email já cadastrado')
+    } catch (error){
+        return res.status(500).json({ error: 'Erro ao criar Empresa', details: error.message });
+    }
+})
+
+// Rota para Pesquisa (get) de todas as Empresas
+routes.get("/companies", async (req, res) => {
+    try{
+        const company = await Company.find()
+        return res.send(company)
+    } catch (error){
+        return res.status(500).json({ error: 'Erro ao buscar Empresas', details: error.message });
+    }
+})
+
+// Rota para Pesquisa (get) de um Empresa por id
+routes.get("/company/:id", async (req, res) => {
+    try {
+        const company = await Company.findById(req.params.id)
+        return res.send(company)
+    }catch (error){
+        return res.status(500).json({ error: 'Erro ao buscar Empresa', details: error.message });
+    }
+})
+
+// Rota para Alteração (update) da Empresa
+routes.put("/company/:id", async (req, res) => {
+
+    try {
+        const userId = Company.findOne({id: req.params.id})
+
+        if (userId) {
+            const { name, email } = req.body;
+
+            const company = await Company.findByIdAndUpdate(req.params.id, {
+                name: name,
+                email: email
+    })
+
+    return res.send(company)
+    }
+    return res.send('Empresa não encontrado')
+
+    } catch (error){
+        return res.status(500).json({ error: 'Erro ao alterar dados da Empresa', details: error.message });
+    }    
+})
+
+// -------------------- ROTAS PARA OS FUNCIONÁRIOS --------------------
+
+// Rota para Criação de Funcionários
+routes.post("/createEmployee", async (req, res) => {
+    try {
+        const userEmail = await Employee.findOne({email: req.body.email})
+
+        if (!(userEmail)) {
+            const { name, email, password, office, company } = req.body;
+
+            const employee = new Employee({
+                name: name,
+                email: email,
+                password: password,
+                office: office,
+                company: company
+            })
+
+            await employee.save()
+            return res.send(employee)
+        }
+
+        return res.send('Email já cadastrado')
+    } catch (error){
+        return res.status(500).json({ error: 'Erro ao criar funcionário', details: error.message });
+    }
+})
+
+// Rota para Pesquisa (get) de todos os Funcionários
+routes.get("/employees", async (req, res) => {
+
+    try{
+        const employees = await Employee.find()
+        return res.send(employees)
+    } catch (error){
+        return res.status(505).json({ error: 'Erro ao buscar funcionários', details: error.message });
+    }
+})
+
+// Rota para Pesquisa (get) de um Funcionário por id
+routes.get("/:id", async (req, res) => {
+    try {
+        const employee = await Employee.findById(req.params.id)
+        return res.send(employee)
+    }catch (error){
+        return res.status(500).json({ error: 'Erro ao buscar funcionário', details: error.message });
+    }
+})
+
+// Rota para Alteração (update) do usuário
+routes.put("/:id", async (req, res) => {
+
+    try {
+        const userId = Employee.findOne({id: req.params.id})
+
+        if (userId) {
+            const { name, email, password, office } = req.body;
+
+            const employee = await Employee.findByIdAndUpdate(req.params.id, {
+                name: name,
+                email: email,
+                password: password,
+                office: office
+    })
+
+    return res.send(employee)
+    }
+    return res.send('Funcionário não encontrado')
+
+    } catch (error){
+        return res.status(500).json({ error: 'Erro ao alterar dados do funcionário', details: error.message });
+    }    
+})
+
+// Rota para Deleção de Usuários
+routes.delete("/:id", async (req, res) => {
+    try{
+        const employee = await Employee.findByIdAndDelete(req.params.id)
+        return res.send(employee)
+    } catch (error){
+        return res.status(500).json({error : 'Erro ao excluir funcionário', details: error.message})
+    }
+})
+
+// -------------------- ROTAS PARA AS PATENTES --------------------
+
+
+
+module.exports = routes;
