@@ -10,7 +10,7 @@ const ObjectId = mongodb.ObjectId
 const { GridFSBucketReadStream, GridFSBucketWriteStream } = require('mongodb');
 const { Readable } = require('stream');
 const path = require('path');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const fs = require('fs')
 
