@@ -62,6 +62,8 @@ export default function Recuperar({isOpen, setSwitchs}) {
                 localStorage.setItem("cargo", data.office);
                 localStorage.setItem("employeeId", data._id);
                 localStorage.setItem("companyId", data.company);
+                localStorage.setItem("rota", rota);
+
                 setError('');
                 homePath()
             } else {
