@@ -24,7 +24,7 @@ function Encerrados(){
     };
 
     const getName = async (employeeId) => {
-        let response = await axios.post('http://127.0.0.1:3010/seachrNomeId',
+        let response = await axios.post(rota + '/seachrNomeId',
         JSON.stringify({ employeeId }),
         {
             headers: { 'Content-Type': 'application/json' }
@@ -45,7 +45,7 @@ function Encerrados(){
                 switch(localStorage.getItem("cargo")){
                     case 'presidente':
                         console.log('presidente')
-                        response = await axios.post('http://127.0.0.1:3010/buscarEncerradoPorIdEmpresa',
+                        response = await axios.post(rota + '/buscarEncerradoPorIdEmpresa',
                             JSON.stringify({ companyId }),
                             {
                                 headers: { 'Content-Type': 'application/json' }
@@ -58,7 +58,7 @@ function Encerrados(){
 
                         case 'advogado':
                             console.log('presidente')
-                            response = await axios.post('http://127.0.0.1:3010/buscarEncerradoPorIdEmpresa',
+                            response = await axios.post(rota + '/buscarEncerradoPorIdEmpresa',
                                 JSON.stringify({ companyId }),
                                 {
                                     headers: { 'Content-Type': 'application/json' }
@@ -71,7 +71,7 @@ function Encerrados(){
 
                     case 'tecnico':
                         console.log('tecnico')
-                        response = await axios.post('http://127.0.0.1:3010/buscarEncerradoPorIdFuncionario',
+                        response = await axios.post(rota + '/buscarEncerradoPorIdFuncionario',
                             JSON.stringify({ employeeId }),
                             {
                                 headers: { 'Content-Type': 'application/json' }
