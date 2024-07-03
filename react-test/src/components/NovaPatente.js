@@ -25,6 +25,7 @@ function NovaPatente() {
 
     const employeeId = localStorage.getItem("employeeId");
     const companyId = localStorage.getItem("companyId");
+    const rota = localStorage.getItem("rota");
 
     const homePath = () =>{
         navigate('/Home');
@@ -50,7 +51,7 @@ function NovaPatente() {
         formData.append('file', file);
         
         //faz o upload caso aceite o arquivo, não sei se a porta ta correta
-        axios.post('http://localhost:3010/upload', formData)
+        axios.post(rota + '/upload', formData)
             .then(response => {
                 console.log(response.data.message);
             })
@@ -75,7 +76,7 @@ function NovaPatente() {
             formData.append('companyId', companyId);
             formData.append('file', file); // Adicione o arquivo ao FormData
 
-            const response = await axios.post('http://localhost:3010/uploadPatente', formData, {
+            const response = await axios.post(rota + '/uploadPatente', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
