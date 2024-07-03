@@ -16,7 +16,7 @@ export default function Recuperar({isOpen, setSwitchs}) {
 
     const navigate = useNavigate();
     //const rota = "http://172.18.0.2:3010"
-    const rota = "http://localhost:4557"
+    const rota = "http://191.135.47.224:4557"
 
     const homePath = () =>{
         navigate('/Home');
