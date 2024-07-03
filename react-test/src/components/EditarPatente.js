@@ -52,7 +52,7 @@ function NovaPatente() {
         formData.append('file', file);
         
         //faz o upload caso aceite o arquivo, não sei se a porta ta correta
-        axios.post(rota + '/upload', formData)
+        axios.post('http://191.135.47.224:4557/upload', formData)
             .then(response => {
                 console.log(response.data.message);
             })
@@ -78,7 +78,7 @@ function NovaPatente() {
             formData.append('companyId', companyId);
             formData.append('file', file); // Adicione o arquivo ao FormData
 
-            const apiUrl = rota + '/updatePatente/' + idAcompanha
+            const apiUrl = 'http://191.135.47.224:4557/updatePatente/' + idAcompanha
             console.log(apiUrl)
 
             const response = await axios.post(apiUrl, formData, {
@@ -109,19 +109,19 @@ function NovaPatente() {
                 let data;
                 switch(localStorage.getItem("cargo")){
                     case 'presidente':
-                        response = await axios.post(rota + 'buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://191.135.47.224:4557buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setPatente(data);
                         break;
 
                     case 'advogado':
-                        response = await axios.post(rota + 'buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://191.135.47.224:4557buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setPatente(data);
                         break;
 
                     case 'tecnico':
-                        response = await axios.post(rota + 'buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://191.135.47.224:4557buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setPatente(data);
                         setName(data.name)
