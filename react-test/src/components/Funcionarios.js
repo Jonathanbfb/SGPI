@@ -34,7 +34,7 @@ function Funcionarios() {
                 const rota = localStorage.getItem("rota");
                 let data;
 
-                const response = await axios.post(rota + '/searchEmployees',
+                const response = await axios.post('http://191.135.47.224:4557/searchEmployees',
                     { companyId }, // Modificado para companyId diretamente
                     { headers: { 'Content-Type': 'application/json' } }
                 );
