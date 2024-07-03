@@ -58,11 +58,12 @@ function Detalhes(){
                 const patenteId = localStorage.getItem("idAcompanha");
                 let response;
                 let data;
+                const rota = localStorage.getItem("rota");
 
                 switch(localStorage.getItem("cargo")){
                     case 'presidente':
                         try{
-                            response = await axios.post('http://127.0.0.1:3010/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                            response = await axios.post(rota + '/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                             data = response.data;
                             setPatente(data);
                         }catch(error){
@@ -70,14 +71,14 @@ function Detalhes(){
                         }
 
                         try{
-                            response = await axios.get('http://127.0.0.1:3010/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                            response = await axios.get(rota + '/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                             setDocumento(response.data)
                         }catch(error){
                             setError(error)
                         }
 
                         try{
-                            response = await axios.post('http://127.0.0.1:3010/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                            response = await axios.post(rota + '/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                             data = response.data;
                             setProcessos(response.data)
                         }catch(error){
@@ -87,7 +88,7 @@ function Detalhes(){
 
                     case 'advogado':
                         try{
-                            response = await axios.post('http://127.0.0.1:3010/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                            response = await axios.post(rota + '/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                             data = response.data;
                             setPatente(data);
                         }catch(error){
@@ -95,14 +96,14 @@ function Detalhes(){
                         }
 
                         try{
-                            response = await axios.get('http://127.0.0.1:3010/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                            response = await axios.get(rota + '/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                             setDocumento(response.data)
                         }catch(error){
                             setError(error)
                         }
 
                         try{
-                            response = await axios.post('http://127.0.0.1:3010/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                            response = await axios.post(rota + '/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                             data = response.data;
                             setProcessos(response.data)
                         }catch(error){
@@ -112,7 +113,7 @@ function Detalhes(){
 
                     case 'tecnico':
                         try{
-                            response = await axios.post('http://127.0.0.1:3010/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                            response = await axios.post(rota + '/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                             data = response.data;
                             setPatente(data);
                         }catch(error){
@@ -121,14 +122,14 @@ function Detalhes(){
 
                         try{
                             console.log(patenteId)
-                            response = await axios.get('http://127.0.0.1:3010/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                            response = await axios.get(rota + '/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                             setDocumento(response.data)
                         }catch(error){
                             setError(error)
                         }
 
                         try{
-                            response = await axios.post('http://127.0.0.1:3010/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                            response = await axios.post(rota + '/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                             data = response.data;
                             setProcessos(response.data)
                         }catch(error){
@@ -158,7 +159,7 @@ function Detalhes(){
 
         e.preventDefault();
 
-        const apiUrl = 'http://localhost:3010/encerrarPatente/' + idAcompanha
+        const apiUrl = rota + '/encerrarPatente/' + idAcompanha
 
         try {
             const response = await axios.post(apiUrl, {
@@ -181,7 +182,7 @@ function Detalhes(){
 
     async function getName(employeeId) {
         try {
-            const response = await axios.post('http://127.0.0.1:3010/searchNomeId', JSON.stringify({ employeeId }), { headers: { 'Content-Type': 'application/json' } });
+            const response = await axios.post(rota + '/searchNomeId', JSON.stringify({ employeeId }), { headers: { 'Content-Type': 'application/json' } });
             const { nome } = response.data;
             return response.data;
         } catch (error) {
