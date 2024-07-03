@@ -30,10 +30,11 @@ function Funcionarios() {
         const verProcessos = async () => {
             try {
                 const employeeId = localStorage.getItem("employeeId");
-                const companyId = localStorage.getItem("companyId"); // Aqui estou apenas usando um companyId de exemplo
+                const companyId = localStorage.getItem("companyId");
+                const rota = localStorage.getItem("rota");
                 let data;
 
-                const response = await axios.post('http://127.0.0.1:3010/searchEmployees',
+                const response = await axios.post(rota + '/searchEmployees',
                     { companyId }, // Modificado para companyId diretamente
                     { headers: { 'Content-Type': 'application/json' } }
                 );
