@@ -58,7 +58,7 @@ function DetalhesEncerrados(){
                     switch(localStorage.getItem("cargo")){
                         case 'presidente':
                             try{
-                                response = await axios.post(rota + '/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                                response = await axios.post('http://191.135.47.224:4557/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                                 data = response.data;
                                 setPatente(data);
                             }catch(error){
@@ -66,14 +66,14 @@ function DetalhesEncerrados(){
                             }
     
                             try{
-                                response = await axios.get(rota + '/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                                response = await axios.get('http://191.135.47.224:4557/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                                 setDocumento(response.data)
                             }catch(error){
                                 setError(error)
                             }
     
                             try{
-                                response = await axios.post(rota + '/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                                response = await axios.post('http://191.135.47.224:4557/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                                 data = response.data;
                                 setProcessos(response.data)
                             }catch(error){
@@ -83,7 +83,7 @@ function DetalhesEncerrados(){
     
                         case 'advogado':
                             try{
-                                response = await axios.post(rota + '/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                                response = await axios.post('http://191.135.47.224:4557/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                                 data = response.data;
                                 setPatente(data);
                             }catch(error){
@@ -91,14 +91,14 @@ function DetalhesEncerrados(){
                             }
     
                             try{
-                                response = await axios.get(rota + '/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                                response = await axios.get('http://191.135.47.224:4557/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                                 setDocumento(response.data)
                             }catch(error){
                                 setError(error)
                             }
     
                             try{
-                                response = await axios.post(rota + '/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                                response = await axios.post('http://191.135.47.224:4557/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                                 data = response.data;
                                 setProcessos(response.data)
                             }catch(error){
@@ -109,7 +109,7 @@ function DetalhesEncerrados(){
                         case 'tecnico':
                             try{
                                 console.log(patenteId)
-                                response = await axios.post(rota + '/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                                response = await axios.post('http://191.135.47.224:4557/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                                 data = response.data;
                                 setPatente(data);
                             }catch(error){
@@ -117,14 +117,14 @@ function DetalhesEncerrados(){
                             }
     
                             try{
-                                response = await axios.get(rota + '/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                                response = await axios.get('http://191.135.47.224:4557/getPdf/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                                 setDocumento(response.data)
                             }catch(error){
                                 setError(error)
                             }
     
                             try{
-                                response = await axios.post(rota + '/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
+                                response = await axios.post('http://191.135.47.224:4557/buscarDocumentosPorPatente/' + patenteId, { headers: { 'Content-Type': 'application/json' }})
                                 data = response.data;
                                 setProcessos(response.data)
                             }catch(error){
@@ -154,7 +154,7 @@ function DetalhesEncerrados(){
     
             e.preventDefault();
     
-            const apiUrl = rota + '/encerrarPatente/' + idEncerrados
+            const apiUrl = 'http://191.135.47.224:4557/encerrarPatente/' + idEncerrados
     
             try {
                 const response = await axios.post(apiUrl, {
@@ -177,7 +177,7 @@ function DetalhesEncerrados(){
     
         async function getName(employeeId) {
             try {
-                const response = await axios.post(rota + '/searchNomeId', JSON.stringify({ employeeId }), { headers: { 'Content-Type': 'application/json' } });
+                const response = await axios.post('http://191.135.47.224:4557/searchNomeId', JSON.stringify({ employeeId }), { headers: { 'Content-Type': 'application/json' } });
                 const { nome } = response.data;
                 return response.data;
             } catch (error) {
