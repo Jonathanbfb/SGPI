@@ -109,19 +109,19 @@ function NovaPatente() {
                 let data;
                 switch(localStorage.getItem("cargo")){
                     case 'presidente':
-                        response = await axios.post('http://191.135.47.224:4557buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://191.135.47.224:4557/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setPatente(data);
                         break;
 
                     case 'advogado':
-                        response = await axios.post('http://191.135.47.224:4557buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://191.135.47.224:4557/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setPatente(data);
                         break;
 
                     case 'tecnico':
-                        response = await axios.post('http://191.135.47.224:4557buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://191.135.47.224:4557/buscarPorIdPatente', JSON.stringify({ patenteId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setPatente(data);
                         setName(data.name)
