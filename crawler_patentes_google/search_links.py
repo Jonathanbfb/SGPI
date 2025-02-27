@@ -23,7 +23,7 @@ class SearchLinks:
         if ip:
             self.options.add_argument('--proxy-server=http://' + ip)
         #self.driver = webdriver.Chrome(r"C:\Users\Callidus\Downloads\chromedriver-win64\chromedriver-win64\chromedriver", options=self.options)
-        self.driver = webdriver.Chrome(r"C:\Users\Callidus\Documents\Teste\chromedriver-win64\chromedriver", options=self.options)        
+        self.driver = webdriver.Chrome(r"C:\Users\jonathan.barros\Downloads\chromedriver_win32", options=self.options)        
         self.driver.get('http://patents.google.com/advanced')
         self.prefix = 'https://patents.google.com/patent/'
         self.number_of_results = None

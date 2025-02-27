@@ -32,9 +32,13 @@ export function HomeUsers(){
     const novaPatentePath = () =>{
         navigate('/NovaPatente')
     };
-   
 
-switch(localStorage.getItem("cargo")){
+    const cargo = localStorage.getItem("cargo");
+   if (!cargo) {
+        return <h2 style={{ textAlign: "center", marginTop: "20px" }}>Erro: Cargo não encontrado. Faça login novamente.</h2>;
+    }
+
+switch(cargo){
         case 'presidente':
 
             //   Presidente
@@ -113,10 +117,8 @@ switch(localStorage.getItem("cargo")){
                 <main>
                     <a href="#"  class="bloco" onClick={acompanhaPath}>
                         <img src={acompanha}  alt='' class="icon"></img><br></br>
-                        <h2>Acompanhamento de processos</h2>
-                        
+                        <h2>Acompanhamento de processos</h2>  
                     </a>
-
                     <a href="#"  class="bloco" onClick={encerraPath}>
                         <img src={encerra}  alt='' class="icon"></img><br></br>
                         <h2>Processos encerrados</h2>
@@ -126,17 +128,13 @@ switch(localStorage.getItem("cargo")){
                         <img src={dashboard}  alt='' class="icon"></img><br></br>
                         <h2>Dashboards</h2>
                     </a>
-
                     <br></br>
-
                     <a href="#"  class="bloco" onClick={existentesPath}>
                         <img src={existentes} alt=''  class="icon"></img><br></br>
                         <h2>Patentes existentes</h2>
                     </a>
-
                 </main>
             )
             break;
     }
-
 }

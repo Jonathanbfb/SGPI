@@ -37,19 +37,19 @@ function Listagem() {
 
                 switch(localStorage.getItem("cargo")){
                     case 'presidente':
-                        response = await axios.post('http://191.135.47.224:4557/buscarEmAndamentoPorIdEmpresa', JSON.stringify({ companyId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://localhost:4557/buscarEmAndamentoPorIdEmpresa', JSON.stringify({ companyId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setProcessos(data);
                         break;
 
                     case 'advogado':
-                        response = await axios.post('http://191.135.47.224:4557/buscarEmAndamentoPorIdEmpresa', JSON.stringify({ companyId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://localhost:4557/buscarEmAndamentoPorIdEmpresa', JSON.stringify({ companyId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setProcessos(data);
                         break;
 
                     case 'tecnico':
-                        response = await axios.post('http://191.135.47.224:4557/buscarEmAndamentoPorIdFuncionario', JSON.stringify({ employeeId }), { headers: { 'Content-Type': 'application/json' } });
+                        response = await axios.post('http://localhost:4557/buscarEmAndamentoPorIdFuncionario', JSON.stringify({ employeeId }), { headers: { 'Content-Type': 'application/json' } });
                         data = response.data;
                         setProcessos(data);
                         break;
@@ -72,7 +72,7 @@ function Listagem() {
 
     async function getName(employeeId) {
         try {
-            const response = await axios.post('http://191.135.47.224:4557/searchNomeId', JSON.stringify({ employeeId }), { headers: { 'Content-Type': 'application/json' } });
+            const response = await axios.post('http://localhost:4557/searchNomeId', JSON.stringify({ employeeId }), { headers: { 'Content-Type': 'application/json' } });
             const { nome } = response.data;
             return response.data;
         } catch (error) {

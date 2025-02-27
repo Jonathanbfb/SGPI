@@ -4,9 +4,19 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-mongoose.connect('mongodb+srv://kaique_:NvTLWlJGFZ7mTaPv@cluster0.tu35bqx.mongodb.net/?retryWrites=true&w=majority');
+
+async function connectMongoDB() {
+try{
 
 
+    await  mongoose.connect('mongodb+srv://mestrado:projetomestrado@cluster0.cusbk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+        console.log("Conectado ao mongoDB")
+}
+catch (err){
+    console.log("Erro ao conectar ao mongoDB", Error)
+}
+}
+connectMongoDB();
 app.use(express.json());
 app.use(cors());
 app.use(routes);

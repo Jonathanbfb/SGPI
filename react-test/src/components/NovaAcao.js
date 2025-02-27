@@ -46,7 +46,7 @@ function NovaPatente() {
         formData.append('file', file);
         
         //faz o upload caso aceite o arquivo, não sei se a porta ta correta
-        axios.post('http://191.135.47.224:4557/upload', formData)
+        axios.post('http://localhost:4557/upload', formData)
             .then(response => {
                 console.log(response.data.message);
             })
@@ -69,7 +69,7 @@ function NovaPatente() {
             
             console.log(formData)
 
-            const response = await axios.post('http://191.135.47.224:4557/uploadDocumento', formData, {
+            const response = await axios.post('http://localhost:4557/uploadDocumento', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

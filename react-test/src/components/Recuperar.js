@@ -1,22 +1,16 @@
-'./static/Login.css';
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
 import setaEsquerda from '../img/setaEsquerda.png';
 import logo from './static/imagens/logo.png';
 import user from './static/imagens/user.png';
 import axios from 'axios';
-
 import usuarios from './Usuarios.json';
-
 
 export default function Recuperar({isOpen, setSwitchs}) {
     const [openRecuperar, setRecuperar] = useState(true)
-
     const navigate = useNavigate();
-    //const rota = "http://172.18.0.2:3010"
-
     const homePath = () =>{
         navigate('/Home');
     };
@@ -25,9 +19,7 @@ export default function Recuperar({isOpen, setSwitchs}) {
     const [senha, setSenha] = useState('');
     const [error, setError] = useState('');
     
-
     const handlLogin = () => {
-        
         
         const usuarioAutenticado = usuarios.find(
             (user) => user.nome === email && user.senha === senha,
@@ -46,15 +38,13 @@ export default function Recuperar({isOpen, setSwitchs}) {
     };
 
     const Handlelogin = async (email, password) => {
-        const rota = "http://191.135.47.224:4557"
+        const rota = "http://localhost:4557";
         try {
             const response = await axios.post(rota + '/login',
-                JSON.stringify({email, password}),
-                {
-                    headers: { 'Content-Type': 'application/json'}
-                }
+                JSON.stringify({ email, password }),
+                { headers: { 'Content-Type': 'application/json' } }
             );
-
+    
             const data = response.data;
     
             if (response.status === 200) {
@@ -63,9 +53,9 @@ export default function Recuperar({isOpen, setSwitchs}) {
                 localStorage.setItem("employeeId", data._id);
                 localStorage.setItem("companyId", data.company);
                 localStorage.setItem("rota", rota);
-
+    
                 setError('');
-                homePath()
+                homePath(); // Redireciona para a Home
             } else {
                 setError('Usuário ou senha incorretos');
             }
@@ -74,6 +64,7 @@ export default function Recuperar({isOpen, setSwitchs}) {
             setError('Erro ao fazer login');
         }
     }
+    
 
     if(isOpen){
         return(
@@ -111,7 +102,7 @@ export default function Recuperar({isOpen, setSwitchs}) {
                                         value="entrar"
                                         onClick={(e) => {
                                             e.preventDefault(); // Evitar o envio do formulário
-                                            Handlelogin(email, senha);
+                                            handlLogin();
                                         }} >ENTRAR</button>
                             </div>
                         </section>

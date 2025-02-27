@@ -22,8 +22,5 @@ def result():
     #buscaPatente = [{'link': 'https://patents.google.com/patent/KR19990075769A/en', 'titulo': 'Tire bead consisting of elliptical steel wire with Fibonacci ratio'}, {'link': 'https://patents.google.com/patent/SU1324019A2/en', 'titulo': 'P-number fibonacci sequence generator'}, {'link': 'https://patents.google.com/patent/SU1149261A1/en', 'titulo': 'Device for checking optimum fibonacci p-codes'}]
     data = jsonify({'patentes': buscaPatente, 'result':'sucesso'})
     return data
-
-
-
 if __name__ == '__main__':
     app.run(debug=True, port=3012)
