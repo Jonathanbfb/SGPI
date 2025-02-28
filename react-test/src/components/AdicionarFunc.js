@@ -14,7 +14,6 @@ function AdicionarFunc() {
     const homePath = () =>{
         navigate('/Home');
     };
-
     
   return (
     <div>
