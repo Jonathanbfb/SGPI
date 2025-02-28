@@ -13,7 +13,7 @@ export function Login() {
                 <div className="main-logo">
                     <img src={logo} alt="Logo" className="main-logo-img" />
                 </div>
-                <Recuperar isOpen={openRecuperar} setSwitchs={() => setRecuperar(!openRecuperar)} />
+                 <Recuperar isOpen={openRecuperar} setSwitchs={() => setRecuperar(!openRecuperar)} /> 
             </div>
         </div>
     );

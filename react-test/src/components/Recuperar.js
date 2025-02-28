@@ -60,13 +60,13 @@ export default function Recuperar({ isOpen, setSwitchs }) {
     };
 
     return isOpen ? (
-        <Container maxWidth="xs" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5, p: 3, bgcolor: '#1E1E2F', borderRadius: 3, boxShadow: 5 }}>
-            <Typography variant="h4" color="#00E5FF" gutterBottom>Login</Typography>
+        <Container maxWidth="sm" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 3, p: 2, bgcolor: '#1E1E2F', borderRadius: 2, boxShadow: 4, width: '90%', maxWidth: '360px' }}>
+            <Typography variant="h5" color="#00E5FF" gutterBottom>Login</Typography>
             <Box sx={{ width: '100%', mb: 2 }}>
                 {error && <Alert severity="error">{error}</Alert>}
             </Box>
-            <TextField fullWidth label="Email" variant="outlined" type="email" value={email} onChange={(e) => setEmail(e.target.value)} InputProps={{ startAdornment: <AccountCircle sx={{ mr: 1 }} /> }} sx={{ mb: 2, bgcolor: 'white', borderRadius: 1 }} />
-            <TextField fullWidth label="Senha" variant="outlined" type="password" value={senha} onChange={(e) => setSenha(e.target.value)} InputProps={{ startAdornment: <Lock sx={{ mr: 1 }} /> }} sx={{ mb: 2, bgcolor: 'white', borderRadius: 1 }} />
+            <TextField fullWidth label="Email" variant="standard" type="email" value={email} onChange={(e) => setEmail(e.target.value)} InputProps={{ startAdornment: <AccountCircle sx={{ mr: 1 }} /> }} sx={{ mb: 2, bgcolor: 'white', borderRadius: 1 }} />
+            <TextField fullWidth label="Senha" variant="standard" type="password" value={senha} onChange={(e) => setSenha(e.target.value)} InputProps={{ startAdornment: <Lock sx={{ mr: 1 }} /> }} sx={{ mb: 2, bgcolor: 'white', borderRadius: 1 }} />
             <FormControlLabel control={<Checkbox />} label="Manter-me conectado" sx={{ color: 'white' }} />
             <Button fullWidth variant="contained" color="primary" onClick={handleLogin} sx={{ mt: 2, bgcolor: '#00E5FF', color: '#1E1E2F' }}>
                 ENTRAR
