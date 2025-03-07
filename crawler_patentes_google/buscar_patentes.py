@@ -2,6 +2,7 @@ import os
 import time
 import csv
 import subprocess
+import shutil  # 📌 Importação adicionada para manipulação de arquivos e diretórios
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -21,8 +22,24 @@ service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
 wait = WebDriverWait(driver, 30)
 
-# Criar diretório para armazenar os HTMLs das patentes
-os.makedirs("html_patentes", exist_ok=True)
+# Criar ou limpar diretório para armazenar os HTMLs das patentes
+html_patentes_dir = "html_patentes"
+
+if os.path.exists(html_patentes_dir):
+    # Remove todos os arquivos dentro da pasta
+    for filename in os.listdir(html_patentes_dir):
+        file_path = os.path.join(html_patentes_dir, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)  # Remove arquivo ou link simbólico
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)  # Remove subdiretório
+        except Exception as e:
+            print(f"❌ Erro ao excluir {file_path}: {e}")
+else:
+    os.makedirs(html_patentes_dir)
+
+print("📂 Diretório 'html_patentes' pronto para uso!")
 
 # 🔍 1️⃣ Acessar a página inicial
 driver.get("https://busca.inpi.gov.br/pePI/")
@@ -39,7 +56,7 @@ print("🔍 Página de pesquisa acessada!")
 try:
     # 4️⃣ Preencher campo de pesquisa
     campo_pesquisa = wait.until(EC.presence_of_element_located((By.NAME, "ExpressaoPesquisa")))
-    campo_pesquisa.send_keys("alfabetização")
+    campo_pesquisa.send_keys("chocolate branco amargo")
     print("✍️ Campo de pesquisa preenchido!")
 
     # 5️⃣ Selecionar tipo de busca
@@ -81,7 +98,7 @@ try:
 
         # Salvar HTML
         html_pagina = driver.page_source
-        filename = f"html_patentes/{patente['numero_patente']}.html"
+        filename = f"{html_patentes_dir}/{patente['numero_patente']}.html"
         with open(filename, "w", encoding="utf-8") as file:
             file.write(html_pagina)
 
