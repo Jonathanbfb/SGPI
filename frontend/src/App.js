@@ -1,96 +1,144 @@
+// src/App.js
 import React, { useState, useEffect } from "react";
-import { Container, TextField, Button, List, ListItem, ListItemText, CircularProgress } from "@mui/material";
-import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Container, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Dialog, DialogTitle, DialogContent, CircularProgress, Stepper, Step, StepLabel, Typography, Box, Input } from "@mui/material";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import PatentForm from "./components/PatentForm";
 
-function App() {
-    const [termoBusca, setTermoBusca] = useState("");
-    const [patentes, setPatentes] = useState([]);
-    const [historico, setHistorico] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [showHistorico, setShowHistorico] = useState(false);
+const mockPatents = [
+  {
+    id: 1,
+    titulo: "Sistema de Energia Solar Inteligente",
+    numero: "BR1023456A",
+    status: 0,
+  },
+  {
+    id: 2,
+    titulo: "Processo de Purificação de Água",
+    numero: "BR9876543B",
+    status: 2,
+  }
+];
 
-    // 📌 Buscar patentes no backend
-    const buscarPatentes = async () => {
-        if (!termoBusca) {
-            alert("Digite um termo para buscar!");
-            return;
-        }
+const PatentTimeline = ({ patent }) => {
+  const [activeStep, setActiveStep] = useState(patent.status);
+  const [paymentFile, setPaymentFile] = useState(null);
+  const [publicationStatus, setPublicationStatus] = useState({ formal: "", mérito: "", concessão: "" });
 
-        setLoading(true);
+  const statuses = [
+    "1ª Etapa: Cadastrada com sucesso",
+    "2ª Etapa: Busca de patentes similares",
+    "3ª Etapa: Guia de pagamento",
+    "4ª Etapa: Exame Formal",
+    "5ª Etapa: Exame de Mérito",
+    "6ª Etapa: Concessão"
+  ];
 
-        try {
-            const response = await axios.post("http://localhost:5000/buscar", { termo: termoBusca });
-            setPatentes(response.data);
-        } catch (error) {
-            console.error("Erro ao buscar patentes:", error);
-            alert("Erro ao buscar patentes.");
-        }
+  const handleFileUpload = (e) => {
+    setPaymentFile(e.target.files[0]);
+  };
 
-        setLoading(false);
-    };
+  const handlePublicationUpdate = (field, value) => {
+    setPublicationStatus({ ...publicationStatus, [field]: value });
+  };
 
-    // 📌 Salvar patentes no banco
-    const salvarPatentes = async () => {
-        try {
-            await axios.post("http://localhost:5000/salvar");
-            alert("✅ Patentes salvas no banco!");
-            setPatentes([]);
-        } catch (error) {
-            console.error("Erro ao salvar patentes:", error);
-            alert("Erro ao salvar patentes.");
-        }
-    };
+  return (
+    <Container>
+      <Typography variant="h4">Timeline da Patente</Typography>
+      <Stepper activeStep={activeStep} alternativeLabel>
+        {statuses.map((label, index) => (
+          <Step key={index}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <Box mt={4}>
+        {activeStep === 2 && (
+          <>
+            <Typography variant="h6">Guia de Pagamento</Typography>
+            <Input type="file" onChange={handleFileUpload} />
+            <Typography color={paymentFile ? "green" : "orange"}>{paymentFile ? "✅ Documento Anexado" : "⚠️ Aguardando Pagamento"}</Typography>
+          </>
+        )}
+        {activeStep >= 3 && (
+          <>
+            <Typography variant="h6">Exame Formal</Typography>
+            <TextField label="Última publicação" fullWidth onChange={(e) => handlePublicationUpdate("formal", e.target.value)} />
+          </>
+        )}
+        {activeStep >= 4 && (
+          <>
+            <Typography variant="h6">Exame de Mérito</Typography>
+            <TextField label="Última publicação" fullWidth onChange={(e) => handlePublicationUpdate("mérito", e.target.value)} />
+          </>
+        )}
+        {activeStep >= 5 && (
+          <>
+            <Typography variant="h6">Concessão</Typography>
+            <TextField label="Última publicação" fullWidth onChange={(e) => handlePublicationUpdate("concessão", e.target.value)} />
+          </>
+        )}
+      </Box>
+    </Container>
+  );
+};
 
-    // 📌 Carregar histórico salvo no banco
-    const carregarHistorico = async () => {
-        setShowHistorico(true);
-        try {
-            const response = await axios.get("http://localhost:5000/historico");
-            setHistorico(response.data);
-        } catch (error) {
-            console.error("Erro ao carregar histórico:", error);
-            alert("Erro ao carregar histórico.");
-        }
-    };
+const PatentList = () => {
+  const [patents, setPatents] = useState(mockPatents);
+  const [selectedPatent, setSelectedPatent] = useState(null);
+  const [open, setOpen] = useState(false);
 
-    return (
-        <Container>
-            <h1>🔍 Busca de Patentes</h1>
-            <TextField label="Digite a palavra-chave" fullWidth value={termoBusca} onChange={(e) => setTermoBusca(e.target.value)} />
-            <Button variant="contained" color="primary" onClick={buscarPatentes} style={{ marginTop: 10 }}>Buscar</Button>
+  return (
+    <Container>
+      <h2>Minhas Patentes</h2>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Título</TableCell>
+              <TableCell>Nº Pedido</TableCell>
+              <TableCell>Ações</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {patents.map((p) => (
+              <TableRow key={p.id}>
+                <TableCell>{p.titulo}</TableCell>
+                <TableCell>{p.numero}</TableCell>
+                <TableCell>
+                  <Button variant="outlined" onClick={() => { setSelectedPatent(p); setOpen(true); }}>
+                    Ver Status
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>Status da Patente</DialogTitle>
+        <DialogContent>
+          {selectedPatent && <PatentTimeline patent={selectedPatent} />}
+        </DialogContent>
+      </Dialog>
+    </Container>
+  );
+};
 
-            {loading && <CircularProgress style={{ marginTop: 20 }} />}
-
-            <h2>📄 Resultados</h2>
-            <List>
-                {patentes.map((p, index) => (
-                    <ListItem key={index}>
-                        <ListItemText primary={p.titulo} secondary={`📌 Nº Pedido: ${p.numero}`} />
-                    </ListItem>
-                ))}
-            </List>
-
-            {patentes.length > 0 && (
-                <Button variant="contained" color="secondary" onClick={salvarPatentes} style={{ marginTop: 10 }}>
-                    Salvar no Banco de Dados
-                </Button>
-            )}
-
-            <Button variant="outlined" color="primary" onClick={carregarHistorico} style={{ marginTop: 20 }}>
-                📜 Ver Histórico
-            </Button>
-
-            {showHistorico && (
-                <List>
-                    {historico.map((h, index) => (
-                        <ListItem key={index}>
-                            <ListItemText primary={h.titulo} secondary={`📌 Nº Pedido: ${h.numero}`} />
-                        </ListItem>
-                    ))}
-                </List>
-            )}
-        </Container>
-    );
-}
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/patent/new" element={<PatentForm />} />
+          <Route path="/patents" element={<PatentList />} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
+  );
+};
 
 export default App;

@@ -1,4 +1,6 @@
 import os
+import sys
+import shutil
 import time
 import csv
 import subprocess
@@ -11,6 +13,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
+# 📌 Verificar se um termo de pesquisa foi recebido do backend
+if len(sys.argv) > 1:
+    termo_pesquisa = sys.argv[1]
+else:
+    print("❌ Nenhum termo de pesquisa recebido!")
+    sys.exit(1)  # Encerra o script se não houver termo
+
+print(f"🔍 Pesquisando por: {termo_pesquisa}")
+
 # 📌 Configuração do WebDriver
 options = Options()
 options.add_argument("--disable-gpu")
@@ -22,8 +33,12 @@ service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
 wait = WebDriverWait(driver, 30)
 
-# Criar ou limpar diretório para armazenar os HTMLs das patentes
+base_dir = os.path.dirname(os.path.abspath(__file__))
 html_patentes_dir = "html_patentes"
+
+# Define o caminho absoluto da pasta html_patentes dentro do diretório correto
+html_patentes_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "html_patentes")
+
 
 if os.path.exists(html_patentes_dir):
     # Remove todos os arquivos dentro da pasta
@@ -39,7 +54,7 @@ if os.path.exists(html_patentes_dir):
 else:
     os.makedirs(html_patentes_dir)
 
-print("📂 Diretório 'html_patentes' pronto para uso!")
+print(f"📂 Diretório '{html_patentes_dir}' pronto para uso!")
 
 # 🔍 1️⃣ Acessar a página inicial
 driver.get("https://busca.inpi.gov.br/pePI/")
@@ -54,10 +69,10 @@ driver.get("https://busca.inpi.gov.br/pePI/jsp/patentes/PatenteSearchBasico.jsp"
 print("🔍 Página de pesquisa acessada!")
 
 try:
-    # 4️⃣ Preencher campo de pesquisa
+    # 4️⃣ Preencher campo de pesquisa com o termo recebido do backend
     campo_pesquisa = wait.until(EC.presence_of_element_located((By.NAME, "ExpressaoPesquisa")))
-    campo_pesquisa.send_keys("chocolate branco amargo")
-    print("✍️ Campo de pesquisa preenchido!")
+    campo_pesquisa.send_keys(termo_pesquisa)  # ✅ Agora insere o termo recebido do backend
+    print(f"✍️ Campo de pesquisa preenchido com: {termo_pesquisa}")
 
     # 5️⃣ Selecionar tipo de busca
     select = wait.until(EC.presence_of_element_located((By.NAME, "FormaPesquisa")))
@@ -98,7 +113,7 @@ try:
 
         # Salvar HTML
         html_pagina = driver.page_source
-        filename = f"{html_patentes_dir}/{patente['numero_patente']}.html"
+        filename = os.path.join(html_patentes_dir, f"{patente['numero_patente']}.html")
         with open(filename, "w", encoding="utf-8") as file:
             file.write(html_pagina)
 
@@ -112,4 +127,13 @@ finally:
 
 # 🔹 Após buscar as patentes, chamar o script de extração de dados
 print("⏳ Executando extração de dados...")
-subprocess.run(["python", "extrair_dados.py"])
+
+
+script_dir = os.path.dirname(os.path.abspath(__file__))  # Obtém o diretório onde buscar_patentes.py está
+
+extrair_dados_path = os.path.join(script_dir, "extrair_dados.py")  # Caminho absoluto para extrair_dados.py
+
+# Executar o script no caminho correto
+subprocess.run([sys.executable, extrair_dados_path])
+
+#subprocess.run(["python", "extrair_dados.py"])

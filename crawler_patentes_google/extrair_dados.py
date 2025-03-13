@@ -4,15 +4,21 @@ import re
 from bs4 import BeautifulSoup
 
 # Criar arquivo final de saída
-output_file = "dados_patentes_corrigido.tsv"
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Caminho correto para salvar o arquivo dentro do diretório onde backend.py está
+output_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dados_patentes_corrigidos.tsv")
+
+
+html_patentes_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "html_patentes")
 
 # Abrir o arquivo para escrita no formato tabulado (TSV)
 with open(output_file, "w", newline="", encoding="utf-8-sig") as csvfile:
     writer = csv.writer(csvfile, delimiter="\t")  # Define TAB como separador
 
     # Processar cada arquivo HTML salvo na pasta 'html_patentes'
-    for index, filename in enumerate(sorted(os.listdir("html_patentes"))):
-        filepath = os.path.join("html_patentes", filename)
+    for index, filename in enumerate(sorted(os.listdir(html_patentes_dir))):
+        filepath = os.path.join(html_patentes_dir, filename)
 
         # Tenta abrir o arquivo com UTF-8, se falhar tenta ISO-8859-1
         try:
