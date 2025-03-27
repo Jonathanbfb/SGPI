@@ -1,0 +1,5 @@
+numero_pedido,data_deposito,data_publicacao,data_concessao,classificacao_ipc,classificacao_cpc,titulo,resumo,depositante,inventores,link
+-,-,-,-,-,-,-,-,-,-,https://busca.inpi.gov.br/pePI/servlet/PatenteServletController?Action=detail&CodPedido=1605555&SearchParameter=CHOCOLATE%20BRANCO%20AMARGO%20%20%20%20%20%20&Resumo=&Titulo=
+-,-,-,-,-,-,-,-,-,-,https://busca.inpi.gov.br/pePI/servlet/PatenteServletController?Action=detail&CodPedido=1605017&SearchParameter=CHOCOLATE%20BRANCO%20AMARGO%20%20%20%20%20%20&Resumo=&Titulo=
+-,-,-,-,-,-,-,-,-,-,https://busca.inpi.gov.br/pePI/servlet/PatenteServletController?Action=detail&CodPedido=1596548&SearchParameter=CHOCOLATE%20BRANCO%20AMARGO%20%20%20%20%20%20&Resumo=&Titulo=
+-,-,-,-,-,-,-,-,-,-,https://busca.inpi.gov.br/pePI/servlet/PatenteServletController?Action=detail&CodPedido=1503899&SearchParameter=CHOCOLATE%20BRANCO%20AMARGO%20%20%20%20%20%20&Resumo=&Titulo=
