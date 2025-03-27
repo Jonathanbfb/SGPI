@@ -1,7 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import {
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-  Paper, Button, Dialog, DialogTitle, DialogContent, Typography
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Typography
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import PatentTimeline from "./PatentTimeline";
@@ -35,37 +45,46 @@ const PatentList = () => {
 
   return (
     <Layout>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-        <Typography variant="h4">Minhas Patentes</Typography>
-        <Button variant="contained" color="primary" onClick={() => navigate("/patent/new")}>
-          Cadastrar Patente
-        </Button>
-      </div>
+      {/* Container geral da página */}
+      <Box sx={{ width: '100%', px: 0 }}>
+  <Box sx={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    mb: 3
+  }}>
+    <Typography variant="h4">Minhas Patentes</Typography>
+    <Button variant="contained" color="primary" onClick={() => navigate("/patent/new")}>
+      Cadastrar Patente
+    </Button>
+  </Box>
 
-      <TableContainer component={Paper} sx={{ width: '100%' }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Título</TableCell>
-              <TableCell>Nº Pedido</TableCell>
-              <TableCell>Ações</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {patents.map((p) => (
-              <TableRow key={p.id}>
-                <TableCell>{p.titulo}</TableCell>
-                <TableCell>{p.numero}</TableCell>
-                <TableCell>
-                  <Button variant="outlined" onClick={() => { setSelectedPatent(p); setOpen(true); }}>
-                    Ver Status
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+  <TableContainer sx={{ width: '100%', px: 0, overflowX: 'auto' }}>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Título</TableCell>
+          <TableCell>Nº Pedido</TableCell>
+          <TableCell>Ações</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {patents.map((p) => (
+          <TableRow key={p.id}>
+            <TableCell>{p.titulo}</TableCell>
+            <TableCell>{p.numero}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => { setSelectedPatent(p); setOpen(true); }}>
+                Ver Status
+              </Button>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+</Box>
+
 
       {/* Modal de Status */}
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>

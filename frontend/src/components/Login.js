@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -9,15 +10,13 @@ import {
   Button,
 } from "@mui/material";
 import { loginUser } from "./auth";
-import videoSource from "../assets/video.mov";
 import logo from "../assets/logo.png";
-
+import backgroundImage from "../assets/copia2.png"; 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
   const handleLogin = () => {
     const user = loginUser(username, password);
     if (user) {
@@ -26,7 +25,6 @@ const Login = () => {
       setError("Usuário ou senha incorretos.");
     }
   };
-
   return (
     <Box
       sx={{
@@ -37,24 +35,12 @@ const Login = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
-      <video
-        src={videoSource}
-        autoPlay
-        loop
-        muted
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: -1,
-        }}
-      />
-
       <Card
         sx={{
           p: 5,
@@ -65,13 +51,35 @@ const Login = () => {
           backdropFilter: "blur(6px)",
         }}
       >
-        <CardContent component="form" onSubmit={(e) => {
-          e.preventDefault(); // impede o reload da página
-          handleLogin();      // chama o login
-        }}>
-          <Typography variant="h4" gutterBottom color="primary">
-            SGPI
-          </Typography>
+        <CardContent
+          component="form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin();
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0.7, 1] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            <Typography
+              variant="h4"
+              align="center"
+              gutterBottom
+              color="primary"
+              sx={{
+                fontWeight: "bold",
+                letterSpacing: 2,
+              }}
+            >
+              SGPI
+            </Typography>
+          </motion.div>
 
           <Box
             sx={{
@@ -137,7 +145,7 @@ const Login = () => {
           )}
 
           <Button
-            type="submit" // <- Aqui!
+            type="submit"
             variant="contained"
             color="primary"
             fullWidth
@@ -150,5 +158,4 @@ const Login = () => {
     </Box>
   );
 };
-
 export default Login;

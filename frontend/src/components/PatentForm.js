@@ -129,7 +129,7 @@ const PatentForm = () => {
         </Button>
       </form>
 
-      {/* Se houver busca em andamento */}
+   
       {buscando && (
         <div style={{ textAlign: "center", marginTop: "20px" }}>
           <CircularProgress />
@@ -137,7 +137,7 @@ const PatentForm = () => {
         </div>
       )}
 
-      {/* Exibir a lista de patentes similares encontradas */}
+
       {patentesSimilares.length > 0 && (
         <div style={{ marginTop: "30px" }}>
           <Typography variant="h5">Patentes Similares Encontradas</Typography>
