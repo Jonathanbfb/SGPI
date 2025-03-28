@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, logoutUser } from "./auth";
 import logo from "../assets/logo.png";
 
+
 const drawerWidth = 240;
 
 const Layout = ({ children }) => {

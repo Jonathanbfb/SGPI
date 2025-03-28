@@ -21,12 +21,10 @@ const Register = () => {
 
   const handleRegister = () => {
     console.log("Usuário cadastrado:", { name, email, profile, password });
-    // Aqui você pode adicionar a lógica de envio para a API
   };
-
   return (
     <Container maxWidth="sm" sx={{ mt: 10 }}>
-      {/* Botão de voltar */}
+     
       <Button
         variant="outlined"
         color="secondary"
@@ -35,13 +33,9 @@ const Register = () => {
       >
         Voltar para o Menu
       </Button>
-
-      {/* Título */}
-      <Typography variant="h4" gutterBottom>
+     <Typography variant="h4" gutterBottom>
         Cadastro de Usuário
       </Typography>
-
-      {/* Formulário */}
       <Box component="form" onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
         <TextField
           label="Nome"
@@ -51,7 +45,6 @@ const Register = () => {
           onChange={(e) => setName(e.target.value)}
           required
         />
-
         <TextField
           label="Email"
           type="email"
@@ -61,7 +54,6 @@ const Register = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-
         <FormControl fullWidth margin="normal" required>
           <InputLabel>Perfil</InputLabel>
           <Select
@@ -74,7 +66,6 @@ const Register = () => {
             <MenuItem value="Engenheiro">Engenheiro</MenuItem>
           </Select>
         </FormControl>
-
         <TextField
           label="Senha"
           type="password"
@@ -84,7 +75,6 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-
         <Button
           type="submit"
           variant="contained"
@@ -98,5 +88,4 @@ const Register = () => {
     </Container>
   );
 };
-
 export default Register;

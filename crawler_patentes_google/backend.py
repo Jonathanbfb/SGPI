@@ -10,7 +10,6 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
-# 📌 Configuração do Banco de Dados MySQL
 db_config = {
     "host": "localhost",
     "user": "root",
@@ -18,29 +17,21 @@ db_config = {
     "database": "patentes_db"
 }
 
-# 📌 Caminho do arquivo gerado pelo `buscar_patentes.py`
-#TSV_FILE = "dados_patentes_corrigido.tsv"
-
 TSV_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dados_patentes_corrigidos.tsv")
 print(f"📌 O backend está procurando o TSV em: {TSV_FILE}")
 
 print(f"📌 O script está rodando de: {os.getcwd()}")
 
-
-# 📌 Função para executar `buscar_patentes.py`
 def executar_scraper(termo):
     try:
         print(f"🔍 Buscando patentes para: {termo}")
-        #python_executable = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".venv", "Scripts", "python.exe")
         python_executable = sys.executable
         script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "buscar_patentes.py"))
         if not os.path.exists(script_path): raise FileNotFoundError(f"❌ ERRO: O arquivo {script_path} não foi encontrado!")
-       # python_executable = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".venv", "Scripts", "python.exe")
         subprocess.run([python_executable, script_path, termo], check=True)
         print("✅ Scraper concluído!")
     except subprocess.CalledProcessError as e:
         print(f"❌ Erro ao executar scraper: {e}")
-# 📌 Função para ler o arquivo `dados_patentes_corrigido.tsv`
 
 from datetime import datetime
 
@@ -49,8 +40,7 @@ def converter_data(data_str):
     try:
         return datetime.strptime(data_str, "%d/%m/%Y").strftime("%Y-%m-%d")
     except ValueError:
-        return None  # Retorna None se a data for inválida
-    
+        return None  
 def ler_arquivo_tsv():
     print(f"📌 Verificando existência do arquivo: {TSV_FILE}")
 
@@ -168,7 +158,6 @@ def salvar_patentes():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# 📌 Rota para listar histórico de buscas salvas
 @app.route("/historico", methods=["GET"])
 def listar_historico():
     try:
@@ -213,8 +202,5 @@ def listar_patentes_por_busca(id_busca):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
-
-
-# 📌 Iniciar servidor
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import PatentTimeline from "./PatentTimeline";
 import Layout from "./Layout";
 
+
 const PatentList = () => {
   const navigate = useNavigate();
   const [patents, setPatents] = useState([]);

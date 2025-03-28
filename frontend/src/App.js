@@ -6,6 +6,7 @@ import PatentList from "./components/PatentList";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import Layout from "./components/Layout"; // Novo Layout
+import PatentDashboard from "./components/PatentDashboard";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route element={<PrivateRoute allowedRoles={["Administrador"]} />}>
           <Route path="/administrador" element={<Navigate to="/patents" />} />
           <Route path="/register" element={<Layout><Register /></Layout>} />
+          <Route path="/dashboard" element={<Layout><PatentDashboard /></Layout>} />
           <Route path="/patents" element={<Layout><PatentList /></Layout>} />
           <Route path="/patent/new" element={<Layout><PatentForm /></Layout>} />
         </Route>
@@ -27,6 +29,7 @@ const App = () => {
           <Route path="/pesquisador" element={<Navigate to="/patents" />} />
           <Route path="/patents" element={<Layout><PatentList /></Layout>} />
           <Route path="/patent/new" element={<Layout><PatentForm /></Layout>} />
+          <Route path="/dashboard" element={<Layout><PatentDashboard /></Layout>} />
         </Route>
 
         {/* Rotas protegidas para Engenheiro */}
@@ -34,6 +37,7 @@ const App = () => {
           <Route path="/engenheiro" element={<Navigate to="/patents" />} />
           <Route path="/patents" element={<Layout><PatentList /></Layout>} />
           <Route path="/patent/new" element={<Layout><PatentForm /></Layout>} />
+          <Route path="/dashboard" element={<Layout><PatentDashboard /></Layout>} />
         </Route>
 
         {/* Página de acesso negado */}
